@@ -5,13 +5,20 @@ const ProductInquiry = () => {
   // State to store SKU input and product data
   const [sku, setSku] = useState("");
   const [productData, setProductData] = useState(null);
+  // State to handle error messages
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Function to handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = await fetchProductData(sku);
-    setProductData(data);
-  };
+   // Function to handle form submission with error handling
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      const data = await fetchProductData(sku);
+      if (!data.sku && !data.SKU) {
+      setErrorMessage("Invalid or Incorrect SKU");
+      } else {
+      setErrorMessage("");
+      setProductData(data);
+      }
+   };
 
   return (
     <div>
@@ -25,6 +32,9 @@ const ProductInquiry = () => {
         />
         <button type="submit">Search</button>
       </form>
+      
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
 
       {/* Display product data */}
          {productData && (

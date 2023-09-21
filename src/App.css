@@ -148,5 +148,12 @@ button:hover {
 
 /* Make Arabic name stand out */
 .productData p:nth-child(3) {
-  color: #007bff;
+  color: #7c010d;  
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
 }
